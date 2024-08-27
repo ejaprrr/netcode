@@ -1,17 +1,32 @@
 <script lang="ts">
+	// $app
+	import { enhance } from '$app/forms';
+	// $lib
+	import ValidatedField from '$lib/components/auth/ValidatedField.svelte';
+	import { validateTag, validatePassword } from '$lib/validation';
+
 	export let form: FormData & { passwordError?: string; tagError?: string };
+
+	$: isFormValid = tagValid && passwordValid;
+	let tagValid = false;
+	let passwordValid = false;
 </script>
 
-<form method="post">
-	<input name="tag" placeholder="tag" />
-	<input type="password" name="password" placeholder="password" />
-	<button>log in</button>
+<form method="post" use:enhance>
+	<ValidatedField
+		validate={validateTag}
+		name="tag"
+		bind:isValid={tagValid}
+		error={form?.tagError}
+	/>
+
+	<ValidatedField
+		validate={validatePassword}
+		name="password"
+		type="password"
+		bind:isValid={passwordValid}
+		error={form?.passwordError}
+	/>
+
+	<button disabled={!isFormValid}>log in</button>
 </form>
-
-{#if form?.passwordError}
-	<p>{form.passwordError}</p>
-{/if}
-
-{#if form?.tagError}
-	<p>{form.tagError}</p>
-{/if}
