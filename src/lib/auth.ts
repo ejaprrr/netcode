@@ -1,4 +1,3 @@
-// tag creation validation
 export const validateNewTag = async (tag: string) => {
 	if (tag.length < 4) {
 		return 'tag must be at least 4 characters';
@@ -11,7 +10,6 @@ export const validateNewTag = async (tag: string) => {
 	}
 };
 
-// password creation validation
 export const validateNewPassword = (password: string) => {
 	if (password.length < 8) {
 		return 'password must be at least 8 characters';
