@@ -15,3 +15,4 @@ SALT=__REPLACE_ME__
 
 PUBLIC_JWT_COOKIE_KEY=__REPLACE_ME__
 ```
+poznámka pro sebe: nedokončený projekt, jen auth stránka
